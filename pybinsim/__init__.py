@@ -1,6 +1,6 @@
 import logging
 
-__version__ = "1.2.1"
+__version__ = "1.1.1"
 
 from pybinsim.application import BinSim
 
@@ -20,4 +20,3 @@ def init_logging(loglevel):
 
 
 logger = init_logging(logging.INFO)
-logger.info("Starting pybinsim v{}".format(__version__))
