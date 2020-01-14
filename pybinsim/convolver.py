@@ -44,7 +44,7 @@ class ConvolverFFTW(object):
         # pyFFTW Options
         pyfftw.interfaces.cache.enable()
         #self.fftw_planning_effort='FFTW_MEASURE'
-        self.fftw_planning_effort ='FFTW_PATIENT'
+        self.fftw_planning_effort ='FFTW_ESTIMATE'
 
         # Get Basic infos
         self.IR_size = ir_size
@@ -138,6 +138,9 @@ class ConvolverFFTW(object):
 
         # Get blocked IRs
         IR_left_blocked, IR_right_blocked = filter.getFilter()
+
+        self.TF_left_blocked = np.zeros([self.IR_blocks, self.block_size + 1], dtype='complex64')
+        self.TF_right_blocked = np.zeros([self.IR_blocks, self.block_size + 1], dtype='complex64')
 
         # Add zeroes to each block and transform to frequency domain
         for ir_block_count in range(0, self.IR_blocks):
